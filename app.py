@@ -10,22 +10,15 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-try:
+conn = psycopg.connect(
+    host=os.getenv("DB_HOST"),
+    dbname=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    port=os.getenv("DB_PORT")
+)
 
-    conn = psycopg.connect(
-       host=os.getenv("DB_HOST"),
-       dbname=os.getenv("DB_NAME"),
-       user=os.getenv("DB_USER"),
-       password=os.getenv("DB_PASSWORD"),
-       port=os.getenv("DB_PORT")
-    )
-
-    print("Conectado ao PostgreSQL!")
-
-except Exception as e:
-
-    print("Erro:")
-    print(e)
+print("Conectado ao PostgreSQL!")
 
 @app.route("/analytics/<project>", methods=["POST"])
 def registrar_visualizacao(project):
