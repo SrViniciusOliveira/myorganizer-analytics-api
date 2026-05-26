@@ -13,11 +13,11 @@ CORS(app)
 try:
 
     conn = psycopg.connect(
-        host=os.getenv("localhost"),
-        dbname=os.getenv("myorganize"),
-        user=os.getenv("postgres"),
-        password=os.getenv("123456"),
-        port=os.getenv(5432)
+       host=os.getenv("DB_HOST"),
+       dbname=os.getenv("DB_NAME"),
+       user=os.getenv("DB_USER"),
+       password=os.getenv("DB_PASSWORD"),
+       port=os.getenv("DB_PORT")
     )
 
     print("Conectado ao PostgreSQL!")
