@@ -32,7 +32,7 @@ def home():
     }
 
 # POST - registrar view
-@app.route("/analytics/<project>", methods=["POST"])
+@app.route("/vizualizacao/<project>", methods=["POST"])
 def registrar_visualizacao(project):
 
     cursor = conn.cursor()
@@ -66,7 +66,6 @@ def get_visualizacoes(project):
 
     return {"visualizacoes": count}
 
-# 🟢 BADGE PARA GITHUB
 # 🟢 BADGE PARA GITHUB
 @app.route("/badge/<project>")
 def badge(project):
