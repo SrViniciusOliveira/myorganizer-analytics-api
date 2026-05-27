@@ -92,14 +92,12 @@ def badge(project):
 
     cursor.close()
 
-    svg = f"""
-    <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20">
-    <rect width="130" height="20" fill="#24292e"/>
-    <rect x="55" width="75" height="20" fill="#2ea043"/>
-    <text x="10" y="14" fill="#fff" font-size="11">views</text>
-    <text x="70" y="14" fill="#fff" font-size="11">{count}</text>
-    </svg>
-    """
+    svg = svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20">
+<rect width="130" height="20" fill="#24292e"/>
+<rect x="55" width="75" height="20" fill="#2ea043"/>
+<text x="10" y="14" fill="#fff" font-size="11">views</text>
+<text x="70" y="14" fill="#fff" font-size="11">{count}</text>
+</svg>"""
 
     return Response(svg, mimetype="image/svg+xml")
 
