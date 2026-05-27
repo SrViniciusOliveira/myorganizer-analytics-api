@@ -31,22 +31,6 @@ def home():
         "message": "MyOrganizer Analytics API online"
     }
 
-# POST - registrar view
-@app.route("/vizualizacao/<project>", methods=["POST"])
-def registrar_visualizacao(project):
-
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        INSERT INTO vizualizador_projetos(nome_projeto)
-        VALUES (?)
-    """, (project,))
-
-    conn.commit()
-
-    cursor.close()
-
-    return {"message": "visualizacao registrada"}
 
 # GET - contar views
 @app.route("/analytics/<project>", methods=["GET"])
@@ -65,6 +49,25 @@ def get_visualizacoes(project):
     cursor.close()
 
     return {"visualizacoes": count}
+
+
+# POST - registrar view
+@app.route("/vizualizacao/<project>", methods=["POST"])
+def registrar_visualizacao(project):
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO vizualizador_projetos(nome_projeto)
+        VALUES (?)
+    """, (project,))
+
+    conn.commit()
+
+    cursor.close()
+
+    return {"message": "visualizacao registrada"}
+
 
 # 🟢 BADGE PARA GITHUB
 @app.route("/badge/<project>")
