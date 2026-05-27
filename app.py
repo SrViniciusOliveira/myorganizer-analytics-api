@@ -101,7 +101,15 @@ def badge(project):
 <text x="70" y="14" fill="#fff" font-size="11">{count}</text>
 </svg>"""
 
-    return Response(svg, mimetype="image/svg+xml")
+    return Response(
+    svg,  
+    mimetype="image/svg+xml",
+    headers={
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    }
+)
 
 # RUN
 if __name__ == "__main__":
