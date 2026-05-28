@@ -14,7 +14,7 @@ conn = sqlite3.connect("database.db", check_same_thread=False)
 cursor = conn.cursor()
 
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS vizualizador_projetos (
+CREATE TABLE IF NOT EXISTS visualizador_projetos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome_projeto TEXT
 )
@@ -40,7 +40,7 @@ def get_visualizacoes(project):
 
     cursor.execute("""
         SELECT COUNT(*)
-        FROM vizualizador_projetos
+        FROM visualizador_projetos
         WHERE nome_projeto = ?
     """, (project,))
 
@@ -52,13 +52,13 @@ def get_visualizacoes(project):
 
 
 # POST - registrar view
-@app.route("/vizualizacao/<project>", methods=["POST"])
+@app.route("/visualizacao/<project>", methods=["POST"])
 def registrar_visualizacao(project):
 
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO vizualizador_projetos(nome_projeto)
+        INSERT INTO visualizador_projetos(nome_projeto)
         VALUES (?)
     """, (project,))
 
@@ -77,7 +77,7 @@ def badge(project):
 
     # REGISTRA A VISUALIZAÇÃO
     cursor.execute("""
-        INSERT INTO vizualizador_projetos(nome_projeto)
+        INSERT INTO visualizador_projetos(nome_projeto)
         VALUES (?)
     """, (project,))
 
@@ -86,7 +86,7 @@ def badge(project):
     # CONTA AS VISUALIZAÇÕES
     cursor.execute("""
         SELECT COUNT(*)
-        FROM vizualizador_projetos
+        FROM visualizador_projetos
         WHERE nome_projeto = ?
     """, (project,))
 
